@@ -4,7 +4,16 @@ import base from "../base";
 
 class EateryAdmin extends Component {
   state = {
-    eateries: {}
+    eateries: {},
+    tags: [
+      "Korean",
+      "Italian",
+      "Mexican",
+      "British",
+      "Japanese",
+      "Vietnamese",
+      "Indian"
+    ]
   };
 
   componentDidMount() {
@@ -27,7 +36,7 @@ class EateryAdmin extends Component {
   render() {
     return (
       <div className="container">
-        <AddEateryForm addEatery={this.addEatery} />
+        <AddEateryForm addEatery={this.addEatery} tags={this.state.tags} />
       </div>
     );
   }

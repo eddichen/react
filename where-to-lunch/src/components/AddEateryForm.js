@@ -1,4 +1,7 @@
 import React from "react";
+import { Typeahead } from "react-bootstrap-typeahead";
+
+import "react-bootstrap-typeahead/css/Typeahead.css";
 
 class AddEateryForm extends React.Component {
   createEatery = event => {
@@ -12,13 +15,14 @@ class AddEateryForm extends React.Component {
       longitude: this.eateryLongitude.value,
       site: this.eaterySite.value,
       priceRange: this.eateryPriceRange.value,
-      cuisine: this.eateryCuisine.value,
+      tags: this.eateryTags,
       seating: this.eaterySeating.value
     };
     //pass values to add eatery
     this.props.addEatery(eatery);
     //clear the form
     event.currentTarget.reset();
+    this.typeahead.getInstance().clear();
   };
 
   render() {
@@ -35,6 +39,7 @@ class AddEateryForm extends React.Component {
               this.eateryName = eateryName;
             }}
             className="form-control"
+            required
           />
         </div>
         <div className="form-group">
@@ -121,6 +126,7 @@ class AddEateryForm extends React.Component {
               this.eateryPriceRange = eateryPriceRange;
             }}
             className="form-control"
+            required
           >
             <option value="">Price Range</option>
             <option value="low">Low</option>
@@ -129,16 +135,19 @@ class AddEateryForm extends React.Component {
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="eateryCuisine">Cuisine</label>
-          <input
-            type="text"
-            name="cuisine"
-            placeholder="cuisine"
-            id="eateryCuisine"
-            ref={eateryCuisine => {
-              this.eateryCuisine = eateryCuisine;
+          <label htmlFor="eateryTags">Tags</label>
+          <Typeahead
+            name="tags"
+            id="eateryTags"
+            ref={typeahead => {
+              this.typeahead = typeahead;
             }}
-            className="form-control"
+            multiple
+            onChange={selected => {
+              this.eateryTags = selected;
+            }}
+            options={this.props.tags}
+            required
           />
         </div>
         <div className="form-group">
@@ -150,6 +159,7 @@ class AddEateryForm extends React.Component {
               this.eaterySeating = eaterySeating;
             }}
             className="form-control"
+            required
           >
             <option value="">Seating</option>
             <option value="takeaway">Takeaway</option>

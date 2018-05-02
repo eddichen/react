@@ -11,7 +11,7 @@ class Eatery extends React.Component {
       longitude,
       site,
       priceRange,
-      cuisine,
+      tags,
       seating
     } = this.props.details;
     return (
@@ -22,7 +22,7 @@ class Eatery extends React.Component {
         </p>
         <p>{site}</p>
         <p>price range: {priceRange}</p>
-        <p>cuisine: {cuisine}</p>
+        <p>tags: {tags}</p>
         <p>seating: {seating}</p>
       </li>
     );
