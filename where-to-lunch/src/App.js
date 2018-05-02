@@ -1,18 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import AddEateryForm from "./components/AddEateryForm";
+import base from './base';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
+  state = {
+    eateries: {}
+  }
+
+  componentDidMount() {
+    this.ref = base.syncState(`eateries`, {
+      context: this,
+      state: 'eateries'
+    });
+  }
+
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
+  }
+
+  addEatery = eatery => {
+    const eateries = {...this.state.eateries};
+    eateries[`eatery${Date.now()}`] = eatery;
+    this.setState({eateries: eateries});
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="container">
+        <AddEateryForm addEatery={this.addEatery}></AddEateryForm>
       </div>
     );
   }
