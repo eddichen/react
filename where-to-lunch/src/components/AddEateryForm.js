@@ -1,7 +1,7 @@
 import React from "react";
 
 class AddEateryForm extends React.Component {
-  createEatery = (event) => {
+  createEatery = event => {
     event.preventDefault();
     const eatery = {
       name: this.eateryName.value,
@@ -14,45 +14,114 @@ class AddEateryForm extends React.Component {
       priceRange: this.eateryPriceRange.value,
       cuisine: this.eateryCuisine.value,
       seating: this.eaterySeating.value
-    }
-    console.log(eatery);
+    };
     //pass values to add eatery
     this.props.addEatery(eatery);
     //clear the form
     event.currentTarget.reset();
-  }
+  };
 
   render() {
-    return(
+    return (
       <form onSubmit={this.createEatery}>
         <div className="form-group">
           <label htmlFor="eateryName">Name</label>
-          <input type="text" name="name" placeholder="name" id="eateryName" ref={(eateryName) => {this.eateryName = eateryName}} className="form-control" />
+          <input
+            type="text"
+            name="name"
+            placeholder="name"
+            id="eateryName"
+            ref={eateryName => {
+              this.eateryName = eateryName;
+            }}
+            className="form-control"
+          />
         </div>
         <div className="form-group">
           <label htmlFor="eateryAddress">Address</label>
-          <input type="text" name="address" placeholder="address" id="eateryAddress" ref={(eateryAddress) => {this.eateryAddress = eateryAddress}}  className="form-control" />
+          <input
+            type="text"
+            name="address"
+            placeholder="address"
+            id="eateryAddress"
+            ref={eateryAddress => {
+              this.eateryAddress = eateryAddress;
+            }}
+            className="form-control"
+          />
         </div>
         <div className="form-group">
           <label htmlFor="eateryCity">City</label>
-          <input type="text" name="city" placeholder="city" id="eateryCity" ref={(eateryCity) => {this.eateryCity = eateryCity}} className="form-control" />
+          <input
+            type="text"
+            name="city"
+            placeholder="city"
+            id="eateryCity"
+            ref={eateryCity => {
+              this.eateryCity = eateryCity;
+            }}
+            className="form-control"
+          />
         </div>
         <div className="form-group">
-          <label htmlFor="eateryPostcode">Postcode</label>  
-          <input type="text" name="postcode" placeholder="postcode" id="eateryPostcode" ref={(eateryPostcode) => {this.eateryPostcode = eateryPostcode}} className="form-control" />
+          <label htmlFor="eateryPostcode">Postcode</label>
+          <input
+            type="text"
+            name="postcode"
+            placeholder="postcode"
+            id="eateryPostcode"
+            ref={eateryPostcode => {
+              this.eateryPostcode = eateryPostcode;
+            }}
+            className="form-control"
+          />
         </div>
         <div className="form-group">
           <label htmlFor="eateryLatitude">Coordinates</label>
-          <input type="number" name="latitude" placeholder="latitude" id="eateryLatitude" ref={(eateryLatitude) => {this.eateryLatitude = eateryLatitude}} className="form-control" />
-          <input type="number" name="longitude" placeholder="longitude" id="eateryLongitude" ref={(eateryLongitude) => {this.eateryLongitude = eateryLongitude}} className="form-control" />
+          <input
+            type="number"
+            name="latitude"
+            placeholder="latitude"
+            id="eateryLatitude"
+            ref={eateryLatitude => {
+              this.eateryLatitude = eateryLatitude;
+            }}
+            className="form-control"
+          />
+          <input
+            type="number"
+            name="longitude"
+            placeholder="longitude"
+            id="eateryLongitude"
+            ref={eateryLongitude => {
+              this.eateryLongitude = eateryLongitude;
+            }}
+            className="form-control"
+          />
         </div>
         <div className="form-group">
           <label htmlFor="eaterySite">Site</label>
-          <input type="url" name="site" placeholder="site" id="eaterySite" ref={(eaterySite) => {this.eaterySite = eaterySite}} className="form-control" />
+          <input
+            type="url"
+            name="site"
+            placeholder="site"
+            id="eaterySite"
+            ref={eaterySite => {
+              this.eaterySite = eaterySite;
+            }}
+            className="form-control"
+          />
         </div>
         <div className="form-group">
           <label htmlFor="eateryPriceRange">Price Range</label>
-          <select name="price-range" id="eateryPriceRange" ref={(eateryPriceRange) => {this.eateryPriceRange = eateryPriceRange}} className="form-control">
+          <select
+            name="price-range"
+            id="eateryPriceRange"
+            ref={eateryPriceRange => {
+              this.eateryPriceRange = eateryPriceRange;
+            }}
+            className="form-control"
+          >
             <option value="">Price Range</option>
             <option value="low">Low</option>
             <option value="medium">Medium</option>
@@ -61,20 +130,36 @@ class AddEateryForm extends React.Component {
         </div>
         <div className="form-group">
           <label htmlFor="eateryCuisine">Cuisine</label>
-          <input type="text" name="cuisine" placeholder="cuisine" id="eateryCuisine" ref={(eateryCuisine) => {this.eateryCuisine = eateryCuisine}} className="form-control" />
+          <input
+            type="text"
+            name="cuisine"
+            placeholder="cuisine"
+            id="eateryCuisine"
+            ref={eateryCuisine => {
+              this.eateryCuisine = eateryCuisine;
+            }}
+            className="form-control"
+          />
         </div>
         <div className="form-group">
           <label htmlFor="eaterySeating">Seating</label>
-          <select name="type" id="eaterySeating" ref={(eaterySeating) => {this.eaterySeating = eaterySeating}} className="form-control">
+          <select
+            name="type"
+            id="eaterySeating"
+            ref={eaterySeating => {
+              this.eaterySeating = eaterySeating;
+            }}
+            className="form-control"
+          >
             <option value="">Seating</option>
             <option value="takeaway">Takeaway</option>
             <option value="sit-in">Sit-in</option>
             <option value="either">Sit-in or Takeaway</option>
           </select>
         </div>
-        <button>Submit</button>           
+        <button>Submit</button>
       </form>
-    )
+    );
   }
 }
 
