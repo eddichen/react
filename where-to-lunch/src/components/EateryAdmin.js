@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import AddEateryForm from "./AddEateryForm";
 import base from "../base";
 
-import "bootstrap/dist/css/bootstrap.min.css";
-
 class EateryAdmin extends Component {
   state = {
     eateries: {}
