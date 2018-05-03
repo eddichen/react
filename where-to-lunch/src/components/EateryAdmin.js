@@ -2,37 +2,43 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import AddEateryForm from "./AddEateryForm";
 import EateryList from "./EateryList";
+import AddTags from "./AddTags";
 import base from "../base";
 
 class EateryAdmin extends Component {
   state = {
     eateries: {},
-    tags: [
-      "Korean",
-      "Italian",
-      "Mexican",
-      "British",
-      "Japanese",
-      "Vietnamese",
-      "Indian"
-    ]
+    tags: []
   };
 
   componentDidMount() {
-    this.ref = base.syncState(`eateries`, {
+    this.refEateries = base.syncState(`eateries`, {
       context: this,
       state: "eateries"
+    });
+
+    this.refTags = base.syncState(`tags`, {
+      context: this,
+      state: "tags",
+      asArray: true
     });
   }
 
   componentWillUnmount() {
-    base.removeBinding(this.ref);
+    base.removeBinding(this.refEateries);
+    base.removeBinding(this.refTags);
   }
 
   addEatery = eatery => {
     const eateries = { ...this.state.eateries };
     eateries[`eatery${Date.now()}`] = eatery;
     this.setState({ eateries: eateries });
+  };
+
+  addTags = tag => {
+    const tags = [...this.state.tags];
+    tags.push(tag);
+    this.setState({ tags: tags });
   };
 
   render() {
@@ -44,6 +50,7 @@ class EateryAdmin extends Component {
           </div>
           <div className="col-12 col-md-4">
             <AddEateryForm addEatery={this.addEatery} tags={this.state.tags} />
+            <AddTags addTags={this.addTags} />
           </div>
         </div>
       </div>
