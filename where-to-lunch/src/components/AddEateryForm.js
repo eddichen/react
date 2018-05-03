@@ -83,26 +83,32 @@ class AddEateryForm extends React.Component {
         </div>
         <div className="form-group">
           <label htmlFor="eateryLatitude">Coordinates</label>
-          <input
-            type="number"
-            name="latitude"
-            placeholder="latitude"
-            id="eateryLatitude"
-            ref={eateryLatitude => {
-              this.eateryLatitude = eateryLatitude;
-            }}
-            className="form-control"
-          />
-          <input
-            type="number"
-            name="longitude"
-            placeholder="longitude"
-            id="eateryLongitude"
-            ref={eateryLongitude => {
-              this.eateryLongitude = eateryLongitude;
-            }}
-            className="form-control"
-          />
+          <div className="row">
+            <div className="col">
+              <input
+                type="number"
+                name="latitude"
+                placeholder="latitude"
+                id="eateryLatitude"
+                ref={eateryLatitude => {
+                  this.eateryLatitude = eateryLatitude;
+                }}
+                className="form-control"
+              />
+            </div>
+            <div className="col">
+              <input
+                type="number"
+                name="longitude"
+                placeholder="longitude"
+                id="eateryLongitude"
+                ref={eateryLongitude => {
+                  this.eateryLongitude = eateryLongitude;
+                }}
+                className="form-control"
+              />
+            </div>
+          </div>
         </div>
         <div className="form-group">
           <label htmlFor="eaterySite">Site</label>
@@ -167,7 +173,7 @@ class AddEateryForm extends React.Component {
             <option value="either">Sit-in or Takeaway</option>
           </select>
         </div>
-        <button>Submit</button>
+        <button className="btn">Submit</button>
       </form>
     );
   }

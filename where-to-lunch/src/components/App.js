@@ -4,6 +4,8 @@ import { Typeahead } from "react-bootstrap-typeahead";
 import EateryList from "./EateryList";
 import base from "../base";
 
+import "react-bootstrap-typeahead/css/Typeahead.css";
+
 class App extends Component {
   state = {
     eateries: {},

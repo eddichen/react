@@ -15,15 +15,13 @@ class Eatery extends React.Component {
       seating
     } = this.props.details;
     return (
-      <li>
-        <h2>{name}</h2>
-        <p>
-          {address} {city} {postcode}
-        </p>
-        <p>{site}</p>
-        <p>price range: {priceRange}</p>
-        <p>tags: {tags}</p>
-        <p>seating: {seating}</p>
+      <li className="col-12 col-lg-4">
+        <div className="card">
+          <div className="card-body">
+            <h4 className="card-title">{name}</h4>
+            <button className="btn btn-primary btn-sm">Edit</button>
+          </div>
+        </div>
       </li>
     );
   }
