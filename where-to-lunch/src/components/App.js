@@ -22,12 +22,7 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <NavLink to="/eatery-admin">Admin</NavLink>
-        <ul>
-          {Object.keys(this.state.eateries).map(key => (
-            <Eatery key={key} details={this.state.eateries[key]} />
-          ))}
-        </ul>
+        <NavLink to="/admin">Add Eatery</NavLink>
       </div>
     );
   }

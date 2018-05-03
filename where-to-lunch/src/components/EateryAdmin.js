@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 import AddEateryForm from "./AddEateryForm";
+import EateryList from "./EateryList";
 import base from "../base";
 
 class EateryAdmin extends Component {
@@ -36,7 +38,14 @@ class EateryAdmin extends Component {
   render() {
     return (
       <div className="container">
-        <AddEateryForm addEatery={this.addEatery} tags={this.state.tags} />
+        <div className="row">
+          <div className="col-12 col-md-8">
+            <EateryList eateries={this.state.eateries} />
+          </div>
+          <div className="col-12 col-md-4">
+            <AddEateryForm addEatery={this.addEatery} tags={this.state.tags} />
+          </div>
+        </div>
       </div>
     );
   }
