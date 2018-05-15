@@ -52,7 +52,8 @@ class EateryAdmin extends Component {
     this.setState({ tags });
   };
 
-  toggle = () => {
+  toggle = key => {
+    this.setState({ selectedKey: key });
     this.setState({ modal: !this.state.modal });
   };
 
@@ -66,10 +67,18 @@ class EateryAdmin extends Component {
         </div>
         <div className="row">
           <div className="col-12 col-md-8">
-            <button onClick={this.toggle}>Modal</button>
-            <ul className="list-unstyled row">
+            {/* <button onClick={this.toggle}>Modal</button> */}
+            <ul className="list-unstyled">
               {Object.keys(this.state.eateries).map(key => (
-                <Eatery key={key} details={this.state.eateries[key]} />
+                <li>
+                  <EditEateryForm
+                    key={key}
+                    index={key}
+                    details={this.state.eateries[key]}
+                    tags={this.state.tags}
+                    updateEatery={this.updateEatery}
+                  />
+                </li>
               ))}
             </ul>
           </div>
@@ -92,13 +101,6 @@ class EateryAdmin extends Component {
             <p>Modal</p>
           </ModalBody>
         </Modal>
-        {/* <EditEateryForm
-            key={this.selectedKey}
-            index={this.selectedKey}
-            details={this.state.eateries[this.selectedKey]}
-            tags={this.state.tags}
-            updateEatery={this.updateEatery}
-          /> */}
       </div>
     );
   }

@@ -19,13 +19,6 @@ class Eatery extends React.Component {
         <div className="card">
           <div className="card-body">
             <h4 className="card-title">{name}</h4>
-            <button
-              className="btn btn-primary btn-sm"
-              data-toggle="modal"
-              data-target="editEateryModal"
-            >
-              Edit
-            </button>
           </div>
         </div>
       </li>

@@ -23,7 +23,9 @@ class EditEateryForm extends React.Component {
   render() {
     return (
       <form>
+        <h2>{this.props.details.name}</h2>
         <div className="form-group">
+          <label htmlFor="eateryName">Name</label>
           <input
             type="text"
             name="name"
@@ -35,6 +37,7 @@ class EditEateryForm extends React.Component {
           />
         </div>
         <div className="form-group">
+          <label htmlFor="eateryAddress">Address</label>
           <input
             type="text"
             name="address"
@@ -48,6 +51,7 @@ class EditEateryForm extends React.Component {
         <div className="form-group">
           <div className="row">
             <div className="col">
+              <label htmlFor="eateryCity">City</label>
               <input
                 type="text"
                 name="city"
@@ -59,6 +63,7 @@ class EditEateryForm extends React.Component {
               />
             </div>
             <div className="col">
+              <label htmlFor="eateryPostcode">Postcode</label>
               <input
                 type="text"
                 name="postcode"
@@ -99,6 +104,7 @@ class EditEateryForm extends React.Component {
           </div>
         </div>
         <div className="form-group">
+          <label htmlFor="eaterySite">Website</label>
           <input
             type="url"
             name="site"
@@ -110,6 +116,7 @@ class EditEateryForm extends React.Component {
           />
         </div>
         <div className="form-group">
+          <label htmlFor="eateryPriceRange">Price Range</label>
           <select
             name="priceRange"
             id="eateryPriceRange"
@@ -137,6 +144,7 @@ class EditEateryForm extends React.Component {
           />
         </div>
         <div className="form-group">
+          <label htmlFor="eaterySeating">Seating Type</label>
           <select
             name="seating"
             id="eaterySeating"
