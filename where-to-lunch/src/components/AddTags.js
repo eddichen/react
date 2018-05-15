@@ -20,7 +20,9 @@ class AddTags extends Component {
               this.tag = tag;
             }}
           />
-          <button type="submit">Add Tag</button>
+          <button type="submit" className="btn btn-primary">
+            Add Tag
+          </button>
         </div>
       </form>
     );

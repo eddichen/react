@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { NavLink } from "react-router-dom";
 import AddEateryForm from "./AddEateryForm";
 import Eatery from "./Eatery";
@@ -9,8 +10,11 @@ import base from "../base";
 class EateryAdmin extends Component {
   state = {
     eateries: {},
-    tags: []
+    tags: [],
+    modal: false
   };
+
+  selectedKey = "";
 
   componentDidMount() {
     this.refEateries = base.syncState(`eateries`, {
@@ -48,6 +52,10 @@ class EateryAdmin extends Component {
     this.setState({ tags });
   };
 
+  toggle = () => {
+    this.setState({ modal: !this.state.modal });
+  };
+
   render() {
     return (
       <div className="container">
@@ -58,18 +66,12 @@ class EateryAdmin extends Component {
         </div>
         <div className="row">
           <div className="col-12 col-md-8">
+            <button onClick={this.toggle}>Modal</button>
             <ul className="list-unstyled row">
               {Object.keys(this.state.eateries).map(key => (
                 <Eatery key={key} details={this.state.eateries[key]} />
               ))}
             </ul>
-            {/* <EditEateryForm
-              key={key}
-              index={key}
-              details={this.state.eateries[key]}
-              tags={this.state.tags}
-              updateEatery={this.updateEatery}
-            /> */}
           </div>
           <div className="col-12 col-md-4">
             <h2>Add Eatery</h2>
@@ -78,6 +80,25 @@ class EateryAdmin extends Component {
             <AddTags addTags={this.addTags} />
           </div>
         </div>
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          aria-labelledby="ModalHeader"
+        >
+          <ModalHeader toggle={this.toggle} id="Modal Header">
+            Modal heading
+          </ModalHeader>
+          <ModalBody>
+            <p>Modal</p>
+          </ModalBody>
+        </Modal>
+        {/* <EditEateryForm
+            key={this.selectedKey}
+            index={this.selectedKey}
+            details={this.state.eateries[this.selectedKey]}
+            tags={this.state.tags}
+            updateEatery={this.updateEatery}
+          /> */}
       </div>
     );
   }

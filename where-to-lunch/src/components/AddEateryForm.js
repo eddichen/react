@@ -173,7 +173,7 @@ class AddEateryForm extends React.Component {
             <option value="either">Sit-in or Takeaway</option>
           </select>
         </div>
-        <button className="btn">Submit</button>
+        <button className="btn btn-primary">Submit</button>
       </form>
     );
   }
