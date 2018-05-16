@@ -19,6 +19,10 @@ class Eatery extends React.Component {
         <div className="card">
           <div className="card-body">
             <h4 className="card-title">{name}</h4>
+            <p>
+              {address}, {postcode}
+            </p>
+            <p>Price: {priceRange}</p>
           </div>
         </div>
       </li>

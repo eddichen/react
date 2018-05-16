@@ -13,6 +13,7 @@ class AddEateryForm extends React.Component {
       postcode: this.eateryPostcode.value,
       latitude: this.eateryLatitude.value,
       longitude: this.eateryLongitude.value,
+      distanceFromOffice: this.eateryDistanceFromOffice.value,
       site: this.eaterySite.value,
       priceRange: this.eateryPriceRange.value,
       tags: this.eateryTags,
@@ -23,6 +24,51 @@ class AddEateryForm extends React.Component {
     //clear the form
     event.currentTarget.reset();
     this.typeahead.getInstance().clear();
+  };
+
+  distanceFromOffice = "";
+
+  calculateDistanceFromOffice = (lat, lng) => {
+    const googleMapsApi = "https://maps.googleapis.com/maps/api/directions/";
+
+    const distanceSettings = {
+      apiKey: "AIzaSyAgbQxPN_Ovnj9oL-PlRRBXDgGl89XRBbI",
+      outputFormat: "json",
+      officeLat: "51.516539",
+      officeLng: "-0.128246",
+      travelMode: "walking",
+      travelUnit: "imperial"
+    };
+    if (lat && lng) {
+      let routes =
+        googleMapsApi +
+        distanceSettings.outputFormat +
+        "?mode=" +
+        distanceSettings.travelMode +
+        "&units=" +
+        distanceSettings.travelUnit +
+        "&origin=" +
+        distanceSettings.officeLat +
+        "," +
+        distanceSettings.officeLng +
+        "&destination=" +
+        lat +
+        "," +
+        lng +
+        "&key=" +
+        distanceSettings.apiKey;
+
+      console.log("routes", routes);
+      fetch(routes, {
+        mode: "no-cors"
+      })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log("there was an error: \n", error);
+        });
+    }
   };
 
   render() {
@@ -108,6 +154,32 @@ class AddEateryForm extends React.Component {
                 className="form-control"
               />
             </div>
+          </div>
+        </div>
+        <div className="form-group">
+          <label htmlFor="eateryDistanceFromOffice">Distance from Office</label>
+          <div className="form-inline">
+            <input
+              type="text"
+              name="distanceFromOffice"
+              id="eateryDistanceFromOffice"
+              ref={eateryDistanceFromOffice => {
+                this.eateryDistanceFromOffice = eateryDistanceFromOffice;
+              }}
+              className="form-control"
+              disabled
+            />
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                this.calculateDistanceFromOffice(
+                  this.eateryLatitude.value,
+                  this.eateryLongitude.value
+                );
+              }}
+            >
+              Get distance
+            </button>
           </div>
         </div>
         <div className="form-group">

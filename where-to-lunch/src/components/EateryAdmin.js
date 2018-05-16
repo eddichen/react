@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { NavLink } from "react-router-dom";
 import AddEateryForm from "./AddEateryForm";
 import Eatery from "./Eatery";
 import EditEateryForm from "./EditEateryForm";
@@ -70,15 +69,13 @@ class EateryAdmin extends Component {
             {/* <button onClick={this.toggle}>Modal</button> */}
             <ul className="list-unstyled">
               {Object.keys(this.state.eateries).map(key => (
-                <li>
-                  <EditEateryForm
-                    key={key}
-                    index={key}
-                    details={this.state.eateries[key]}
-                    tags={this.state.tags}
-                    updateEatery={this.updateEatery}
-                  />
-                </li>
+                <EditEateryForm
+                  key={key}
+                  index={key}
+                  details={this.state.eateries[key]}
+                  tags={this.state.tags}
+                  updateEatery={this.updateEatery}
+                />
               ))}
             </ul>
           </div>

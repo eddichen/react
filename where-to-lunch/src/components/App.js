@@ -43,6 +43,7 @@ class App extends Component {
           }
         }
       }
+      return false;
     });
     this.setState({ eateriesFiltered: eateriesFiltered });
   };
