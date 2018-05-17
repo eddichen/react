@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
-import { Typeahead } from "react-bootstrap-typeahead";
-import EateryList from "./EateryList";
-import base from "../base";
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import { Typeahead } from 'react-bootstrap-typeahead';
+import EateryList from './EateryList';
+import base from '../base';
 
-import "react-bootstrap-typeahead/css/Typeahead.css";
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 class App extends Component {
   state = {
@@ -16,12 +16,12 @@ class App extends Component {
   componentDidMount() {
     this.refEateries = base.syncState(`eateries`, {
       context: this,
-      state: "eateries"
+      state: 'eateries'
     });
 
     this.refTags = base.syncState(`tags`, {
       context: this,
-      state: "tags",
+      state: 'tags',
       asArray: true
     });
   }
@@ -50,20 +50,37 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <NavLink to="/admin">Add Eatery</NavLink>
-        <form>
-          <div className="form-group">
-            <label htmlFor="search">I'm feeling like...</label>
-            <Typeahead
-              options={this.state.tags}
-              onChange={selected => {
-                this.filterEateries(selected);
-              }}
-              id="search"
-            />
+        <div className="row mb-3">
+          <div className="col">
+            <h1>Where to lunch</h1>
           </div>
-        </form>
-        <EateryList eateries={this.state.eateriesFiltered} />
+          <div className="col text-right">
+            <NavLink to="/admin">Admin</NavLink>
+          </div>
+        </div>
+        <div className="row mb-4">
+          <form className="col">
+            <div className="row">
+              <div className="col col-auto align-self-center">
+                <label htmlFor="search" className="mb-0">
+                  I'm feeling like...
+                </label>
+              </div>
+              <div className="col">
+                <Typeahead
+                  options={this.state.tags}
+                  onChange={selected => {
+                    this.filterEateries(selected);
+                  }}
+                  id="search"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div className="row">
+          <EateryList eateries={this.state.eateriesFiltered} />
+        </div>
       </div>
     );
   }

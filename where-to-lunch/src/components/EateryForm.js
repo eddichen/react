@@ -1,33 +1,10 @@
 import React from 'react';
-import { Typeahead } from 'react-bootstrap-typeahead';
 
-import 'react-bootstrap-typeahead/css/Typeahead.css';
-
-class AddEateryForm extends React.Component {
-  createEatery = event => {
-    event.preventDefault();
-    const eatery = {
-      name: this.eateryName.value,
-      address: this.eateryAddress.value,
-      city: this.eateryCity.value,
-      postcode: this.eateryPostcode.value,
-      latitude: this.eateryLatitude.value,
-      longitude: this.eateryLongitude.value,
-      site: this.eaterySite.value,
-      priceRange: this.eateryPriceRange.value,
-      tags: this.eateryTags,
-      type: this.eateryType.value
-    };
-    //pass values to add eatery
-    this.props.addEatery(eatery);
-    //clear the form
-    event.currentTarget.reset();
-    this.typeahead.getInstance().clear();
-  };
-
+class EateryForm extends React.Component {
   render() {
     return (
-      <form onSubmit={this.createEatery}>
+      <form>
+        <h2>{this.props.details.name}</h2>
         <div className="form-group">
           <label htmlFor="eateryName">Name</label>
           <input
@@ -39,7 +16,7 @@ class AddEateryForm extends React.Component {
               this.eateryName = eateryName;
             }}
             className="form-control"
-            required
+            value={this.props.details.name}
           />
         </div>
         <div className="form-group">
@@ -53,40 +30,47 @@ class AddEateryForm extends React.Component {
               this.eateryAddress = eateryAddress;
             }}
             className="form-control"
+            value={this.props.details.address}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="eateryCity">City</label>
-          <input
-            type="text"
-            name="city"
-            placeholder="city"
-            id="eateryCity"
-            ref={eateryCity => {
-              this.eateryCity = eateryCity;
-            }}
-            className="form-control"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="eateryPostcode">Postcode</label>
-          <input
-            type="text"
-            name="postcode"
-            placeholder="postcode"
-            id="eateryPostcode"
-            ref={eateryPostcode => {
-              this.eateryPostcode = eateryPostcode;
-            }}
-            className="form-control"
-          />
+          <div className="row">
+            <div className="col">
+              <label htmlFor="eateryCity">City</label>
+              <input
+                type="text"
+                name="city"
+                placeholder="city"
+                id="eateryCity"
+                ref={eateryCity => {
+                  this.eateryCity = eateryCity;
+                }}
+                className="form-control"
+                value={this.props.details.city}
+              />
+            </div>
+            <div className="col">
+              <label htmlFor="eateryPostcode">Postcode</label>
+              <input
+                type="text"
+                name="postcode"
+                placeholder="postcode"
+                id="eateryPostcode"
+                ref={eateryPostcode => {
+                  this.eateryPostcode = eateryPostcode;
+                }}
+                className="form-control"
+                value={this.props.details.postcode}
+              />
+            </div>
+          </div>
         </div>
         <div className="form-group">
           <label htmlFor="eateryLatitude">Coordinates</label>
           <div className="row">
             <div className="col">
               <input
-                type="text"
+                type="number"
                 name="latitude"
                 placeholder="latitude"
                 id="eateryLatitude"
@@ -94,11 +78,12 @@ class AddEateryForm extends React.Component {
                   this.eateryLatitude = eateryLatitude;
                 }}
                 className="form-control"
+                value={this.props.details.latitude}
               />
             </div>
             <div className="col">
               <input
-                type="text"
+                type="number"
                 name="longitude"
                 placeholder="longitude"
                 id="eateryLongitude"
@@ -106,12 +91,13 @@ class AddEateryForm extends React.Component {
                   this.eateryLongitude = eateryLongitude;
                 }}
                 className="form-control"
+                value={this.props.details.longitude}
               />
             </div>
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="eaterySite">Site</label>
+          <label htmlFor="eaterySite">Website</label>
           <input
             type="url"
             name="site"
@@ -121,18 +107,20 @@ class AddEateryForm extends React.Component {
               this.eaterySite = eaterySite;
             }}
             className="form-control"
+            value={this.props.details.site}
           />
         </div>
         <div className="form-group">
           <label htmlFor="eateryPriceRange">Price Range</label>
           <select
-            name="price-range"
+            name="priceRange"
             id="eateryPriceRange"
             ref={eateryPriceRange => {
               this.eateryPriceRange = eateryPriceRange;
             }}
             className="form-control"
             required
+            value={this.props.details.priceRange}
           >
             <option value="">Price Range</option>
             <option value="low">Low</option>
@@ -149,29 +137,27 @@ class AddEateryForm extends React.Component {
               this.typeahead = typeahead;
             }}
             multiple
-            onChange={selected => {
-              this.eateryTags = selected;
-            }}
+            defaultSelected={this.props.details.tags}
             options={this.props.tags}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="eateryType">Type</label>
+          <label htmlFor="eaterySeating">Seating Type</label>
           <select
-            name="type"
-            id="eaterType"
-            ref={eateryType => {
-              this.eateryType = eateryType;
+            name="seating"
+            id="eaterySeating"
+            ref={eaterySeating => {
+              this.eaterySeating = eaterySeating;
             }}
             className="form-control"
+            value={this.props.details.seating}
             required
           >
-            <option value="">Type</option>
-            <option value="restaurant">Restaurant</option>
-            <option value="street-food-stall">Street-food Stall</option>
-            <option value="takeaway-store">Takeaway Store</option>
-            <option value="fast-food">Fast Food</option>
+            <option value="">Seating</option>
+            <option value="takeaway">Takeaway</option>
+            <option value="sit-in">Sit-in</option>
+            <option value="either">Sit-in or Takeaway</option>
           </select>
         </div>
         <button className="btn btn-primary">Submit</button>
@@ -180,4 +166,4 @@ class AddEateryForm extends React.Component {
   }
 }
 
-export default AddEateryForm;
+export default EateryForm;

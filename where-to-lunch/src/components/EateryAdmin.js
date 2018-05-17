@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { NavLink } from "react-router-dom";
-import AddEateryForm from "./AddEateryForm";
-import Eatery from "./Eatery";
-import EditEateryForm from "./EditEateryForm";
-import AddTags from "./AddTags";
-import base from "../base";
+import React, { Component } from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
+import AddEateryForm from './AddEateryForm';
+import Eatery from './Eatery';
+import EditEateryForm from './EditEateryForm';
+import AddTags from './AddTags';
+import base from '../base';
 
 class EateryAdmin extends Component {
   state = {
@@ -14,17 +14,17 @@ class EateryAdmin extends Component {
     modal: false
   };
 
-  selectedKey = "";
+  selectedKey = '';
 
   componentDidMount() {
     this.refEateries = base.syncState(`eateries`, {
       context: this,
-      state: "eateries"
+      state: 'eateries'
     });
 
     this.refTags = base.syncState(`tags`, {
       context: this,
-      state: "tags",
+      state: 'tags',
       asArray: true
     });
   }
@@ -67,10 +67,10 @@ class EateryAdmin extends Component {
         </div>
         <div className="row">
           <div className="col-12 col-md-8">
-            {/* <button onClick={this.toggle}>Modal</button> */}
             <ul className="list-unstyled">
-              {Object.keys(this.state.eateries).map(key => (
-                <li>
+              {Object.keys(this.state.eateries)
+                .reverse()
+                .map(key => (
                   <EditEateryForm
                     key={key}
                     index={key}
@@ -78,8 +78,7 @@ class EateryAdmin extends Component {
                     tags={this.state.tags}
                     updateEatery={this.updateEatery}
                   />
-                </li>
-              ))}
+                ))}
             </ul>
           </div>
           <div className="col-12 col-md-4">
