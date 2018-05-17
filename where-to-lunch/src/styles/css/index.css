@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Permanent+Marker");
 body {
   margin: 0;
   padding: 0;
@@ -6,6 +7,11 @@ body {
 body {
   background-color: #f1f1f1;
   color: #4f739e; }
+
+.site-logo {
+  font-family: 'Permanent Marker', cursive;
+  color: #58d8d2;
+  font-size: 3.5rem; }
 
 .card {
   border-radius: 0; }

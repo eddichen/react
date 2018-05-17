@@ -52,7 +52,7 @@ class App extends Component {
       <div className="container">
         <div className="row mb-3">
           <div className="col">
-            <h1>Where to lunch</h1>
+            <h1 className="site-logo">Where to lunch!?!</h1>
           </div>
           <div className="col text-right">
             <NavLink to="/admin">Admin</NavLink>
