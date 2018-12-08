@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React from "react";
+import { Link } from "react-router";
 
 const Single = React.createClass({
   render() {
-    return <div className="single-photo" />;
+    return <div className="single-photo">i am the single</div>;
   }
 });
 

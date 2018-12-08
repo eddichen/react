@@ -1,9 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React from "react";
+import Photo from "./Photo";
 
 const PhotoGrid = React.createClass({
   render() {
-    return <div className="photo-grid">i'm the photoGrid</div>;
+    return (
+      <div className="photo-grid">
+        {this.props.posts.map((post, i) => (
+          <Photo {...this.props} key={i} i={i} post={post} />
+        ))}
+      </div>
+    );
   }
 });
 
